@@ -12,6 +12,9 @@ module.exports = {
     filename: `index.js`,
     libraryTarget: `commonjs2`,
   },
+  externals: {
+    "@actions/github": `@actions/github`,
+  },
 
   module: {
     rules: [
