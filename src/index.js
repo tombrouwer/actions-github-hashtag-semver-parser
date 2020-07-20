@@ -1,4 +1,4 @@
-import { info, fail, toJSON, showError, input, output } from "./Core";
+import { info, fail, showError, input, output } from "./Core";
 import { context } from "@actions/github";
 import map from "lodash/map";
 
