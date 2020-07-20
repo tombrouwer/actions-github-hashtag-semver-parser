@@ -72,11 +72,15 @@ export default class Commit {
       Commit.fetchCommitData(commit, args, octokit),
     );
 
-    const commitsData = await Promise.all(commitsDataFetchers);
+    let commitsData;
+    Promise.all(commitsDataFetchers)
+      .then(data => {
+        commitsData = data;
+      })
+      .catch(error => {
+        notifier.info(`ERROR GET COMMITS`, error);
+      });
 
-    return commitsData.map(
-      commitData =>
-        new Commit(Commit.fetchCommitData(commitData, args, octokit), notifier),
-    );
+    return commitsData.map(commitData => new Commit(commitData, notifier));
   }
 }
