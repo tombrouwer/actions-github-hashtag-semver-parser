@@ -1,0 +1,25 @@
+name: "NPM Monorepo"
+description: "Manage monorepo with github actions."
+author: "Tom Brouwer"
+outputs:
+  changelog:
+    description: "Changelog with packages and versions."
+inputs:
+  github_token:
+    description: "Github token to get the commit info"
+    required: true
+  default_bump:
+    description: "Default semver bump for updated packages."
+    required: false
+    default: "minor"
+  path_to_config:
+    description: "The path to the config file."
+    required: false
+    default: "monorepo.js"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
+branding:
+  icon: "truck"
+  color: "green"

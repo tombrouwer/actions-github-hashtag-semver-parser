@@ -1,0 +1,47 @@
+{
+  "name": "actions-github-packages-monorepo",
+  "version": "1.0.0",
+  "description": "Github action to manage monorepo with npm packages",
+  "main": "dist/index.js",
+  "keywords": [
+    "Github",
+    "Action",
+    "npm",
+    "packages",
+    "monorepo"
+  ],
+  "author": "Tom Brouwer",
+  "license": "MIT",
+  "scripts": {
+    "test": "node_modules/.bin/mocha --require @babel/register",
+    "dev": "node_modules/.bin/webpack --mode development",
+    "build": "node_modules/.bin/webpack --mode production",
+    "lint": "node_modules/.bin/eslint 'src/**/*.js' --fix"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/plugin-transform-destructuring": "^7.10.4",
+    "@babel/plugin-transform-parameters": "^7.10.5",
+    "@babel/plugin-transform-spread": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "chai": "^4.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.10.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "joi": "^17.1.1",
+    "lodash": "^4.17.19",
+    "mocha": "^8.0.1",
+    "prettier": "^1.12.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
