@@ -18,9 +18,10 @@ try {
   const owner = context.payload.repository.owner;
   info(`Test line 3`);
   const args = { owner: owner.name || owner.login, repo: repository.name };
-  info(`Test line 4`);
+  info(`Test line 4`, GITHUB_TOKEN);
+  info(`getOctokit`, getOctokit);
   const octokit = getOctokit(GITHUB_TOKEN);
-  info(`Test line 5`);
+  info(`Test line 5`, octokit);
   const config = Config.construct(CONFIG_PATH);
   info(`Test line 6`);
   const packages = Package.getWithPaths(config.packagePaths);
