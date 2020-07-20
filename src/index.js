@@ -22,7 +22,8 @@ try {
   info(`Test line 3`);
   const args = { owner: owner.name || owner.login, repo: repository.name };
   info(`Test line 4`, GITHUB_TOKEN);
-  info(`getOctokit`, getOctokit, github);
+  info(`github`, github);
+  info(`getOctokit`, getOctokit);
   const octokit = getOctokit(GITHUB_TOKEN);
   info(`Test line 5`, octokit);
   const config = Config.construct(CONFIG_PATH);
