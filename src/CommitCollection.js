@@ -35,6 +35,7 @@ export default class CommitCollection {
 
     try {
       commitData = await Promise.all(commits.map(this.fetchCommitData));
+      this.info(`commitData`, commitData);
     } catch (error) {
       this.info(`ERROR`, error);
       throw error;
@@ -51,8 +52,9 @@ export default class CommitCollection {
    * @param {object} commit
    */
   fetchCommitData(commit) {
-    this.args.ref = commit.id || commit.sha;
+    const args = { ...this.args };
+    args.ref = commit.id || commit.sha;
 
-    return this.octokit.repos.getCommit(this.args);
+    return this.octokit.repos.getCommit(args);
   }
 }
