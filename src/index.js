@@ -21,7 +21,7 @@ const start = async () => {
     const owner = context.payload.repository.owner;
     info(`Test line 3`);
     const args = { owner: owner.name || owner.login, repo: repository.name };
-    info(`Test line 4`);
+    info(`Test line 4`, getOctokit);
     const octokit = getOctokit(GITHUB_TOKEN);
     info(`Test line 5`);
     const config = Config.construct(CONFIG_PATH);
