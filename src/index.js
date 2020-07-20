@@ -23,7 +23,7 @@ try {
   info(`semver`);
   info(toJSON(semver));
 
-  if (!semver) {
+  if (semver) {
     output(`semver`, semver);
     info(`semver`, semver);
   } else {
