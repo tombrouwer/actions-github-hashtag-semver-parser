@@ -8,9 +8,9 @@ try {
   const messages = map(context.payload.commits, `message`);
   info(`messages`);
   info(toJSON(messages));
-  // const messagesStr = messages.join(` `);
-  // info(`messagesStr`);
-  // info(toJSON(messagesStr));
+  const messagesStr = messages.join(` `);
+  info(`messagesStr`);
+  info(toJSON(messagesStr));
   // const semver =
   //   messagesStr.search(`#minor`) > -1
   //     ? `minor`
