@@ -64,7 +64,9 @@ export default class Commit {
         break;
     }
 
-    commits = commits.filter(c => !c.parents || 1 === c.parents.length);
+    commits = commits.filter(
+      c => (!c.parents || 1 === c.parents.length) && c.distinct,
+    );
 
     const commitsDataFetchers = commits.map(commit =>
       Commit.fetchCommitData(commit, args, octokit),
