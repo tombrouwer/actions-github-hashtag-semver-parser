@@ -27,9 +27,9 @@ try {
   const packages = Package.getWithPaths(config.packagePaths);
   Notifier.info(Notifier.toJSON(packages));
   info(`Test line 7`);
-  Commit.getCommits(context, args, octokit)
+  Commit.get(context, args, octokit)
     .then(commits => {
-      Notifier.info(Notifier.toJSON(commits));
+      info(Notifier.toJSON(commits));
     })
     .catch(error => {
       showError(error);

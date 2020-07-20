@@ -35,8 +35,13 @@ export default class Commit {
   //     .validate()
   //     .merge();
   // }
+  static fetchCommitData(commit, args, octokit) {
+    args.ref = commit.id || commit.sha;
 
-  static async getCommits(context, args, octokit, notifier = Notifier) {
+    return octokit.repos.getCommit(args);
+  }
+
+  static async get(context, args, octokit, notifier = Notifier) {
     let commits;
 
     notifier.debug(`Getting commits...`);
@@ -61,6 +66,11 @@ export default class Commit {
         break;
     }
 
-    return commits;
+    commits = commits.filter(c => !c.parents || 1 === c.parents.length);
+
+    return commits.map(
+      commit =>
+        new Commit(Commit.fetchCommitData(commit, args, octokit), notifier),
+    );
   }
 }
