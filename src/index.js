@@ -1,10 +1,13 @@
 import "regenerator-runtime/runtime";
 import { info, fail, input, showError, debug } from "./Definitions/Core";
-import { context, getOctokit } from "@actions/github";
+import * as github from "@actions/github";
 import Config from "./Config";
 import Package from "./Package";
 import Commit from "./Commit";
 import * as Notifier from "./Definitions/Core";
+
+const context = github.context;
+const getOctokit = github.getOctokit;
 
 const CONFIG_PATH = input(`path_to_config`);
 const GITHUB_TOKEN = input(`github_token`);
