@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime";
 import { info, fail, input, showError, debug } from "./Definitions/Core";
-import * as github from "@actions/github";
+import { context, getOctokit } from "@actions/github";
 // import { Octokit } from "@octokit/rest";
 import Config from "./Config";
 import Package from "./Package";
@@ -9,7 +9,6 @@ import * as Notifier from "./Definitions/Core";
 
 const CONFIG_PATH = input(`path_to_config`);
 const GITHUB_TOKEN = input(`github_token`);
-const context = github.context;
 info(`Test line 0`);
 
 const start = async () => {
@@ -21,8 +20,8 @@ const start = async () => {
     const owner = context.payload.repository.owner;
     info(`Test line 3`);
     const args = { owner: owner.name || owner.login, repo: repository.name };
-    info(`Test line 4`, github.getOctokit);
-    const octokit = github.getOctokit(GITHUB_TOKEN);
+    info(`Test line 4`, getOctokit);
+    const octokit = getOctokit(GITHUB_TOKEN);
     info(`Test line 5`, octokit);
     const config = Config.construct(CONFIG_PATH);
     info(`Test line 6`);

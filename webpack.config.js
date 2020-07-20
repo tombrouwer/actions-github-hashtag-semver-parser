@@ -10,7 +10,6 @@ module.exports = {
   output: {
     path: `${__dirname}/dist`,
     filename: `index.js`,
-    libraryTarget: `commonjs2`,
   },
   externals: {
     "@actions/github": `@actions/github`,
