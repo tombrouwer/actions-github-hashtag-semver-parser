@@ -20,6 +20,10 @@ export const output = (key, output) => {
   core.setOutput(key, output);
 };
 
+export const showError = error => {
+  core.error(formatLogMessage(`error`, error));
+};
+
 export const fail = error => {
   core.setFailed(error.message);
 };
