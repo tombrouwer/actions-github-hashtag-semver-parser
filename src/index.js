@@ -1,7 +1,6 @@
 import "regenerator-runtime/runtime";
 import { info, fail, input, showError, debug } from "./Definitions/Core";
-import { context, getOctokit } from "@actions/github";
-// eslint-disable-next-line no-unused-vars
+import { context } from "@actions/github";
 import { Octokit } from "@octokit/rest";
 import Config from "./Config";
 import Package from "./Package";
@@ -21,8 +20,8 @@ const start = async () => {
     const owner = context.payload.repository.owner;
     info(`Test line 3`);
     const args = { owner: owner.name || owner.login, repo: repository.name };
-    info(`Test line 4`, getOctokit);
-    const octokit = getOctokit(GITHUB_TOKEN);
+    info(`Test line 4`);
+    const octokit = new Octokit({ auth: `token ${GITHUB_TOKEN}` });
     info(`Test line 5`);
     const config = Config.construct(CONFIG_PATH);
     info(`Test line 6`);
