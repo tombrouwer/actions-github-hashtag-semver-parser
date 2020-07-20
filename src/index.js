@@ -1,34 +1,34 @@
-import { info, fail, input, toJSON, output, showError } from "./Core";
+import { info, fail, toJSON, showError } from "./Core"; //output, input
 import { context } from "@actions/github";
 import map from "lodash/map";
 
-const DEFAULT_SEMVER = input(`default_semver`);
+// const DEFAULT_SEMVER = input(`default_semver`);
 
 try {
   const messages = map(context.payload.commits, `message`);
   info(`messages`);
   info(toJSON(messages));
-  const messagesStr = messages.join(` `);
-  info(`messagesStr`);
-  info(toJSON(messagesStr));
-  const semver =
-    messagesStr.search(`#minor`) > -1
-      ? `minor`
-      : messagesStr.search(`#major`) > -1
-      ? `major`
-      : messagesStr.search(`#patch`) > -1
-      ? `patch`
-      : DEFAULT_SEMVER;
+  // const messagesStr = messages.join(` `);
+  // info(`messagesStr`);
+  // info(toJSON(messagesStr));
+  // const semver =
+  //   messagesStr.search(`#minor`) > -1
+  //     ? `minor`
+  //     : messagesStr.search(`#major`) > -1
+  //     ? `major`
+  //     : messagesStr.search(`#patch`) > -1
+  //     ? `patch`
+  //     : DEFAULT_SEMVER;
 
-  info(`semver`);
-  info(toJSON(semver));
+  // info(`semver`);
+  // info(toJSON(semver));
 
-  if (!semver) {
-    output(`semver`, semver);
-    info(`semver`, semver);
-  } else {
-    fail(`No semver found!`);
-  }
+  // if (!semver) {
+  //   output(`semver`, semver);
+  //   info(`semver`, semver);
+  // } else {
+  //   fail(`No semver found!`);
+  // }
 } catch (error) {
   showError(error);
   fail(error.message);
