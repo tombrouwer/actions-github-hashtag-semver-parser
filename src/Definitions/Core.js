@@ -1,4 +1,4 @@
-import core from "@actions/core";
+import * as core from "@actions/core";
 
 export const toJSON = (value, pretty = true) => {
   return pretty ? JSON.stringify(value, null, 4) : JSON.stringify(value);
