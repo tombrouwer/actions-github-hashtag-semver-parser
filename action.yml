@@ -1,21 +1,13 @@
-name: "NPM Monorepo"
-description: "Manage monorepo with github actions."
+name: "SEMVER parser"
+description: "Parses hashtag semver from git commit messages (#minor, #major and #patch)"
 author: "Tom Brouwer"
 outputs:
-  changelog:
-    description: "Changelog with packages and versions."
+  semver:
+    description: "The semver update key (eg: minor, major or patch)"
 inputs:
-  github_token:
-    description: "Github token to get the commit info"
-    required: true
-  default_bump:
-    description: "Default semver bump for updated packages."
+  default_semver:
+    description: "The default semver update key."
     required: false
-    default: "minor"
-  path_to_config:
-    description: "The path to the config file."
-    required: false
-    default: "monorepo.js"
 
 runs:
   using: "node12"
