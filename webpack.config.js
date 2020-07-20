@@ -11,9 +11,6 @@ module.exports = {
     path: `${__dirname}/dist`,
     filename: `index.js`,
   },
-  externals: {
-    "@actions/github": `@actions/github`,
-  },
 
   module: {
     rules: [
