@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime";
 import { info, fail, input } from "./Definitions/Core";
 import { context, getOctokit } from "@actions/github";
 import Config from "./Config";
