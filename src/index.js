@@ -26,16 +26,19 @@ const start = async () => {
     const config = Config.construct(CONFIG_PATH);
     info(`Test line 6`);
     const packages = Package.getWithPaths(config.packagePaths);
-    Notifier.info(Notifier.toJSON(packages));
+    Notifier.info(Notifier.toJSON(context.payload.commits));
     info(`Test line 7`);
-
-    const commitCollection = await new CommitCollection(
+    const commitCollection = new CommitCollection(
       context.payload.commits,
       args,
       octokit,
-    ).load();
-
-    Notifier.info(Notifier.toJSON(commitCollection));
+    );
+    info(`Test line 8`);
+    const result = await commitCollection.load();
+    info(`Test line 9`);
+    Notifier.info(Notifier.toJSON(result));
+    info(`Test line 10`);
+    Notifier.info(Notifier.toJSON(packages));
 
     // Get and analize packages.
     // Get file changes
