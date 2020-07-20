@@ -31,7 +31,13 @@ export default class CommitCollection {
       c => (!c.parents || 1 === c.parents.length) && c.distinct,
     );
 
-    const commitData = await Promise.all(commits.map(this.fetchCommitData));
+    let commitData = [];
+
+    try {
+      commitData = await Promise.all(commits.map(this.fetchCommitData));
+    } catch (error) {
+      throw error;
+    }
 
     this.commits = commitData.map(commit => new Commit(commit));
 
