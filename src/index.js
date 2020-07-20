@@ -1,4 +1,4 @@
-import { info, fail, toJSON, showError, input } from "./Core"; //output, input
+import { info, fail, toJSON, showError, input, output } from "./Core";
 import { context } from "@actions/github";
 import map from "lodash/map";
 
@@ -23,12 +23,12 @@ try {
   info(`semver`);
   info(toJSON(semver));
 
-  // if (!semver) {
-  //   output(`semver`, semver);
-  //   info(`semver`, semver);
-  // } else {
-  //   fail(`No semver found!`);
-  // }
+  if (!semver) {
+    output(`semver`, semver);
+    info(`semver`, semver);
+  } else {
+    fail(`No semver found!`);
+  }
 } catch (error) {
   showError(error);
   fail(error.message);
