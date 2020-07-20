@@ -15,8 +15,6 @@ export default class Commit {
     this.info = notifier.info;
     this.output = notifier.output;
     this.debug = notifier.debug;
-    this.config = {};
-
     this.debug(`CONFIG PATH`, commit);
   }
 
@@ -68,9 +66,15 @@ export default class Commit {
 
     commits = commits.filter(c => !c.parents || 1 === c.parents.length);
 
-    return commits.map(
-      commit =>
-        new Commit(Commit.fetchCommitData(commit, args, octokit), notifier),
+    const commitsDataFetchers = commits.map(commit =>
+      Commit.fetchCommitData(commit, args, octokit),
+    );
+
+    const commitsData = await Promise.all(commitsDataFetchers);
+
+    return commitsData.map(
+      commitData =>
+        new Commit(Commit.fetchCommitData(commitData, args, octokit), notifier),
     );
   }
 }
