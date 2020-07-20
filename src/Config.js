@@ -40,7 +40,12 @@ export default class Config {
       return readdirSync(`./${directoryPath}`, {
         withFileTypes: true,
       })
-        .filter(dir => dir.isDirectory() && dir.name !== `node_modules`)
+        .filter(
+          dir =>
+            dir.isDirectory() &&
+            dir.name !== `node_modules` &&
+            !dir.name.startsWith(`.`),
+        )
         .map(dir => `./${directoryPath}/${dir.name}`);
     });
 

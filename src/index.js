@@ -1,13 +1,11 @@
+import "@octokit/rest";
 import "regenerator-runtime/runtime";
 import { info, fail, input, showError, debug } from "./Definitions/Core";
-import * as github from "@actions/github";
-import { Octokit } from "@octokit/rest";
+import { context, getOctokit } from "@actions/github";
 import Config from "./Config";
 import Package from "./Package";
 import Commit from "./Commit";
 import * as Notifier from "./Definitions/Core";
-
-const context = github.context;
 
 const CONFIG_PATH = input(`path_to_config`);
 const GITHUB_TOKEN = input(`github_token`);
@@ -21,14 +19,13 @@ try {
   const owner = context.payload.repository.owner;
   info(`Test line 3`);
   const args = { owner: owner.name || owner.login, repo: repository.name };
-  info(`Test line 4`, GITHUB_TOKEN);
-  info(`github`, github);
-  info(`getOctokit`, new Octokit(GITHUB_TOKEN));
-  const octokit = new Octokit(GITHUB_TOKEN);
+  info(`Test line 4`);
+  const octokit = getOctokit(GITHUB_TOKEN);
   info(`Test line 5`, octokit);
   const config = Config.construct(CONFIG_PATH);
   info(`Test line 6`);
   const packages = Package.getWithPaths(config.packagePaths);
+  Notifier.info(Notifier.toJSON(packages));
   info(`Test line 7`);
   Commit.getCommits(context, args, octokit)
     .then(commits => {
