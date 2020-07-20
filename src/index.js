@@ -21,7 +21,7 @@ try {
   const args = { owner: owner.name || owner.login, repo: repository.name };
   info(`Test line 4`);
   const octokit = new Octokit(GITHUB_TOKEN);
-  info(`Test line 5`, octokit);
+  info(`Test line 5`);
   const config = Config.construct(CONFIG_PATH);
   info(`Test line 6`);
   const packages = Package.getWithPaths(config.packagePaths);
@@ -40,7 +40,6 @@ try {
   // Get file changes
   // Filter packages where files are changed
   // Run commands on packages
-  info(packages);
 } catch (error) {
   showError(error);
   fail(error.message);
