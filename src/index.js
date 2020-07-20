@@ -1,14 +1,12 @@
 import "regenerator-runtime/runtime";
-import { info, fail, input, toJSON, output } from "./Core";
+import { info, fail, input, toJSON, output, showError } from "./Core";
 import { context } from "@actions/github";
 import map from "lodash/map";
 
 const DEFAULT_SEMVER = input(`default_semver`);
-info(`Test line 0`);
 
 const start = async () => {
   try {
-    info(toJSON(context.payload.commits));
     const messages = map(context.payload.commits, `message`);
     const messagesStr = messages.implode(` `);
     const semver =
@@ -21,6 +19,7 @@ const start = async () => {
         : DEFAULT_SEMVER;
 
     if (!semver) {
+      showError(`No semver found!`);
       throw new Error(`No semver found!`);
     }
 
