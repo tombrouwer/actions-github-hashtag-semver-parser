@@ -1,13 +1,13 @@
 import "regenerator-runtime/runtime";
 import { info, fail, input, showError, debug } from "./Definitions/Core";
 import * as github from "@actions/github";
+import { Octokit } from "@octokit/rest";
 import Config from "./Config";
 import Package from "./Package";
 import Commit from "./Commit";
 import * as Notifier from "./Definitions/Core";
 
 const context = github.context;
-const getOctokit = github.getOctokit;
 
 const CONFIG_PATH = input(`path_to_config`);
 const GITHUB_TOKEN = input(`github_token`);
@@ -23,8 +23,8 @@ try {
   const args = { owner: owner.name || owner.login, repo: repository.name };
   info(`Test line 4`, GITHUB_TOKEN);
   info(`github`, github);
-  info(`getOctokit`, getOctokit);
-  const octokit = getOctokit(GITHUB_TOKEN);
+  info(`getOctokit`, new Octokit(GITHUB_TOKEN));
+  const octokit = new Octokit(GITHUB_TOKEN);
   info(`Test line 5`, octokit);
   const config = Config.construct(CONFIG_PATH);
   info(`Test line 6`);
