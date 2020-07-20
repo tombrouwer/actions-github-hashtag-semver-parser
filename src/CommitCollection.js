@@ -36,6 +36,7 @@ export default class CommitCollection {
     try {
       commitData = await Promise.all(commits.map(this.fetchCommitData));
     } catch (error) {
+      this.info(`ERROR`, error);
       throw error;
     }
 
