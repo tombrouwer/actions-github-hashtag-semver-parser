@@ -6,27 +6,21 @@ const DEFAULT_SEMVER = input(`default_semver`);
 
 try {
   const messages = map(context.payload.commits, `message`);
-  info(`messages`);
-  info(toJSON(messages));
   const messagesStr = messages.join(` `);
-  info(`messagesStr`);
-  info(toJSON(messagesStr));
   const semver =
-    messagesStr.search(`#minor`) > -1
-      ? `minor`
-      : messagesStr.search(`#major`) > -1
+    messagesStr.search(`#major`) > -1
       ? `major`
+      : messagesStr.search(`#minor`) > -1
+      ? `minor`
       : messagesStr.search(`#patch`) > -1
       ? `patch`
       : DEFAULT_SEMVER;
-
-  info(`semver`);
-  info(toJSON(semver));
 
   if (semver) {
     output(`semver`, semver);
     info(`semver`, semver);
   } else {
+    info(`No semver found!`);
     fail(`No semver found!`);
   }
 } catch (error) {
