@@ -19,7 +19,7 @@
     "lint": "node_modules/.bin/eslint 'src/**/*.js' --fix"
   },
   "devDependencies": {
-    "@actions/core": "^1.2.4",
+    "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
