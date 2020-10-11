@@ -20,8 +20,8 @@ try {
     output(`semver`, semver);
     info(`semver`, semver);
   } else {
-    info(`No semver found!`);
-    fail(`No semver found!`);
+    output(`semver`, `patch`);
+    info(`semver`, `patch`);
   }
 } catch (error) {
   showError(error);
